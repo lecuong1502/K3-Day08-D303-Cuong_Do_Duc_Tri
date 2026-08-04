@@ -1,17 +1,92 @@
 [
   {
-    "question": "Học phí hàng năm của chương trình Business tại RMIT Vietnam là bao nhiêu?",
-    "expected_answer": "Khoảng 375.840.000 VND mỗi năm (tùy chương trình cụ thể).",
-    "expected_context": "Trang Tuition Fees, mục Undergraduate Programs"
+    "id": "q01",
+    "question": "How are tuition fee payments made at RMIT Vietnam?",
+    "expected_answer": "Tuition fee payments at RMIT Vietnam are made each semester, on a course-by-course basis, priced and invoiced in Vietnamese Dong (VND). RMIT Vietnam has 3 semesters per year.",
+    "expected_context": "tuition fee payments are made each semester, on a course-by-course basis"
   },
   {
-    "question": "Học phí được thanh toán theo hình thức nào?",
-    "expected_answer": "Thanh toán theo từng học kỳ, tính theo từng môn học đã đăng ký.",
-    "expected_context": "Trang Tuition Fees, mục Payment Structure"
+    "id": "q02",
+    "question": "What GPA is required to be eligible for the Academic Achievement Scholarship?",
+    "expected_answer": "Students must achieve an overall GPA of 3.0/4.0 (or equivalent, 75% with pass mark 1, or converted to a 100-point scale) to be eligible.",
+    "expected_context": "student must achieve an overall GPA of 3.0/4.0"
   },
   {
-    "question": "Trường có cung cấp ký túc xá trong khuôn viên không?",
-    "expected_answer": "Không — trường không cung cấp chỗ ở trong khuôn viên, nhưng có đội ngũ hỗ trợ sinh viên tìm chỗ ở gần trường.",
-    "expected_context": "Trang Accommodation Services"
+    "id": "q03",
+    "question": "What payment methods are available for tuition fees?",
+    "expected_answer": "Payment methods include online payment via myRMIT, bank transfer/deposit to RMIT Vietnam's Vietcombank account, and payment at the campus cashier using bank cards.",
+    "expected_context": "Online payment via myRMIT is the preferred payment method"
+  },
+  {
+    "id": "q04",
+    "question": "What is included in the Compulsory Non-Academic Fees for international students?",
+    "expected_answer": "International students must pay a Medical Insurance Fee (compulsory), while Vietnamese students pay a National Medical Insurance Fee collected on behalf of the Social Insurance Unit.",
+    "expected_context": "Medical Insurance Fee for International Students"
+  },
+  {
+    "id": "q05",
+    "question": "How should international students find accommodation near RMIT Vietnam campuses?",
+    "expected_answer": "Most international students choose shared or private rentals near campus; RMIT provides an accommodation recommendation list and tenant advice, but housing is independently arranged and not affiliated with RMIT.",
+    "expected_context": "Most international students choose to live in shared or private rentals in the surrounding areas"
+  },
+  {
+    "id": "q06",
+    "question": "What should students discuss with housemates when renting shared accommodation in Vietnam?",
+    "expected_answer": "Students should discuss house rules, bills, rent, cleaning schedules, guests, and quiet hours with housemates before moving in.",
+    "expected_context": "Discuss house rules, bills, rent, and cleaning schedules, guests, and quiet hours"
+  },
+  {
+    "id": "q07",
+    "question": "What is the process to register for courses on myRMIT?",
+    "expected_answer": "Students select courses, review the summary on the Review and Enrol page, submit their enrolment, confirm submission, then check the Enrolment Confirmation page for a green tick confirming successful enrolment.",
+    "expected_context": "The Review and Enrol page provides a summary of all courses that you have added"
+  },
+  {
+    "id": "q08",
+    "question": "Can students change or cancel their course enrolment after the deadline?",
+    "expected_answer": "All enrolments, cancellations, or changes must be completed by the designated cut-off time (8/9pm Vietnam time) on the deadline dates; changes after this may not be processed.",
+    "expected_context": "All enrolments, cancellations or changes to your enrolment will need to be completed by 8/9pm"
+  },
+  {
+    "id": "q09",
+    "question": "What events does the RMIT Vietnam Library organize for students?",
+    "expected_answer": "The library organizes events such as the Library Seminar, R:Loop (sustainability/recycling event), and Beyond the Pages (games on critical and sustainable thinking).",
+    "expected_context": "RMIT Vietnam Library is proud to host its annual Library Seminar"
+  },
+  {
+    "id": "q10",
+    "question": "What support services are available during RMIT Vietnam's Orientation Week?",
+    "expected_answer": "Orientation Week includes workshops on academic support, wellbeing services, library support, a Family Welcome Day for parents, and induction sessions for international students covering visas and health insurance.",
+    "expected_context": "workshops cover common issues new students may encounter and introduces a wide range of services"
+  },
+  {
+    "id": "q11",
+    "question": "How can new students get their RMIT student ID card?",
+    "expected_answer": "New students bring their national ID card or passport on their first day on campus to receive their student ID card, which grants access to campus facilities and services like printing and the library.",
+    "expected_context": "bring your national ID card or passport to receive your student ID card"
+  },
+  {
+    "id": "q12",
+    "question": "Is tuition fee assistance available for students with a sibling or parent who studied at RMIT Vietnam?",
+    "expected_answer": "Yes, siblings, spouses, parents, or children of current or past RMIT Vietnam students are eligible for 5% tuition fee assistance when commencing studies, subject to certain conditions.",
+    "expected_context": "Siblings, spouses, parents or children of a current or past student of RMIT Vietnam are eligible for 5% in fee assistance"
+  },
+  {
+    "id": "q13",
+    "question": "What is Vietnam's National Medical Insurance requirement for Vietnamese students?",
+    "expected_answer": "Vietnamese students are required by law (Decree 105/2014/NĐ-CP) to participate in National Medical Insurance throughout their studies, including during leave of absence, and private insurance is not a valid substitute.",
+    "expected_context": "Vietnamese students are required to participate in the national medical insurance program"
+  },
+  {
+    "id": "q14",
+    "question": "What happens if a student has outstanding tuition debt?",
+    "expected_answer": "Students with outstanding tuition debt must settle it before they can access support services, re-enrol, or successfully re-apply to RMIT Vietnam or another RMIT campus.",
+    "expected_context": "Students are obliged to terminate the outstanding debts or other payable fees"
+  },
+  {
+    "id": "q15",
+    "question": "What is the recommended course load per semester at RMIT Vietnam?",
+    "expected_answer": "In each semester, students enrol into a maximum of 3 courses, with 3 semesters offered per year.",
+    "expected_context": "RMIT Vietnam has 3 semesters per year, in each semester you enrol into a maximum of 3 courses"
   }
 ]
