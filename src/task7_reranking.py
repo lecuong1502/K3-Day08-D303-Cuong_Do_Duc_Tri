@@ -14,7 +14,9 @@ bất kể nội dung đó có thật sự liên quan đến câu hỏi hay khô
 quyết định fallback ở Task 9 — xem ghi chú ở đó.
 """
 
-from typing import Optional
+import os
+
+import requests
 
 
 def rerank_cross_encoder(
@@ -31,30 +33,36 @@ def rerank_cross_encoder(
     Returns:
         List of top_k candidates, re-scored và sorted by rerank_score descending.
     """
-    # TODO: Implement cross-encoder reranking
-    #
-    # Option A: Jina Reranker API
-    # import requests
-    # response = requests.post(
-    #     "https://api.jina.ai/v1/rerank",
-    #     headers={"Authorization": f"Bearer {JINA_API_KEY}"},
-    #     json={
-    #         "model": "jina-reranker-v2-base-multilingual",
-    #         "query": query,
-    #         "documents": [c["content"] for c in candidates],
-    #         "top_n": top_k
-    #     }
-    # )
-    # reranked = response.json()["results"]
-    # return [
-    #     {**candidates[r["index"]], "score": r["relevance_score"]}
-    #     for r in reranked
-    # ]
-    #
-    # Option B: Local model (Qwen3-Reranker)
-    # from transformers import AutoModelForSequenceClassification, AutoTokenizer
-    # ...
-    raise NotImplementedError("Implement rerank_cross_encoder")
+    if top_k <= 0 or not candidates:
+        return []
+
+    api_key = os.getenv("JINA_API_KEY")
+    if not api_key:
+        raise ValueError("JINA_API_KEY is required for cross-encoder reranking")
+
+    response = requests.post(
+        "https://api.jina.ai/v1/rerank",
+        headers={
+            "Authorization": f"Bearer {api_key}",
+            "Content-Type": "application/json",
+        },
+        json={
+            "model": "jina-reranker-v2-base-multilingual",
+            "query": query,
+            "documents": [candidate["content"] for candidate in candidates],
+            "top_n": min(top_k, len(candidates)),
+        },
+        timeout=30,
+    )
+    response.raise_for_status()
+
+    return [
+        {
+            **candidates[result["index"]],
+            "score": result["relevance_score"],
+        }
+        for result in response.json()["results"]
+    ]
 
 
 def rerank_mmr(
@@ -126,28 +134,22 @@ def rerank_rrf(
     Returns:
         List of top_k candidates sorted by RRF score descending.
     """
-    # TODO: Implement RRF
-    #
-    # rrf_scores = {}  # content -> score
-    # content_map = {}  # content -> full dict
-    #
-    # for ranked_list in ranked_lists:
-    #     for rank, item in enumerate(ranked_list, 1):
-    #         key = item["content"]
-    #         rrf_scores[key] = rrf_scores.get(key, 0) + 1 / (k + rank)
-    #         content_map[key] = item
-    #
-    # # Sort by RRF score
-    # sorted_items = sorted(rrf_scores.items(), key=lambda x: x[1], reverse=True)
-    #
-    # results = []
-    # for content, score in sorted_items[:top_k]:
-    #     item = content_map[content].copy()
-    #     item["score"] = score
-    #     results.append(item)
-    #
-    # return results
-    raise NotImplementedError("Implement rerank_rrf")
+    scores: dict[str, float] = {}
+    items: dict[str, dict] = {}
+
+    for ranked_list in ranked_lists:
+        for rank, item in enumerate(ranked_list, 1):
+            content = item["content"]
+            scores[content] = scores.get(content, 0.0) + 1.0 / (k + rank)
+            items[content] = item
+
+    ranked_contents = sorted(scores, key=scores.__getitem__, reverse=True)[:top_k]
+    results = []
+    for content in ranked_contents:
+        result = items[content].copy()
+        result["score"] = scores[content]
+        results.append(result)
+    return results
 
 
 # =============================================================================
